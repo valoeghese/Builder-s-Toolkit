@@ -1,33 +1,34 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "toolkit",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Builder's Toolkit",
+  "description": "Adds a bunch of tools for builders and mapmakers.",
   "authors": [
-    "Me!"
+    "Valoeghese"
   ],
   "contact": {
-    "issues": "https://github.com/minecraft-cursed-legacy/Example-Mod/issues",
-    "sources": "https://github.com/minecraft-cursed-legacy/Example-Mod"
+    "issues": "https://github.com/valoeghese/builder-s-toolkit/issues",
+    "sources": "https://github.com/valoeghese/builder-s-toolkit"
   },
 
-  "license": "CC0-1.0",
+  "license": "GFYPL",
   "icon": "assets/modid/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "init": [
-      "io.github.minecraftcursedlegacy.example.ExampleMod"
+      "valoeghese.toolkit.Toolkit"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "toolkit.mixins.json"
   ],
 
   "depends": {
     "fabricloader": "*",
+    "legacy-worldtypes": "*",
     "minecraft": "1.0.0-beta.7.3"
   },
   "suggests": {
