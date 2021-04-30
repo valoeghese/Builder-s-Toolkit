@@ -14,6 +14,7 @@ public class LevelEditData implements AttachedData {
 	public LevelEditData(LevelEditData original) {
 		this.start = new Vec3i(original.start.x, original.start.y, original.end.z);
 		this.end = new Vec3i(original.end.x, original.end.y, original.end.z);
+		this.isWand = original.isWand;
 	}
 
 	public LevelEditData() {
