@@ -9,13 +9,13 @@ import io.github.minecraftcursedlegacy.api.terrain.ChunkGenerator;
 import net.minecraft.level.Level;
 import net.minecraft.level.biome.Biome;
 import net.minecraft.level.source.LevelSource;
-import valoeghese.toolkit.Toolkit;
+import valoeghese.toolkit.common.Configurations;
 
 public class FlatChunkGenerator extends ChunkGenerator {
 	public FlatChunkGenerator(Level level, long seed) {
 		super(level, seed);
 
-		List<Object> layers = Toolkit.superflatConfig.getList("layers");
+		List<Object> layers = Configurations.superflatConfig.getList("layers");
 		this.layers = new byte[layers.size()];
 
 		for (int i = 0; i < layers.size(); ++i) {

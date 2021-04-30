@@ -8,7 +8,7 @@ import net.minecraft.level.gen.BiomeSource;
 import net.minecraft.level.gen.FixedBiomeSource;
 import net.minecraft.level.source.LevelSource;
 import net.minecraft.util.io.CompoundTag;
-import valoeghese.toolkit.Toolkit;
+import valoeghese.toolkit.common.Configurations;
 
 public class SuperflatWorldType extends WorldType {
 	public SuperflatWorldType(Id id) {
@@ -22,6 +22,6 @@ public class SuperflatWorldType extends WorldType {
 
 	@Override
 	public BiomeSource createBiomeSource(Level level, CompoundTag additionalData) {
-		return new FixedBiomeSource(Biome.PLAINS, Toolkit.superflatConfig.getDoubleValue("climate.temperature"), Toolkit.superflatConfig.getDoubleValue("climate.rainfall"));
+		return new FixedBiomeSource(Biome.PLAINS, Configurations.superflatConfig.getDoubleValue("climate.temperature"), Configurations.superflatConfig.getDoubleValue("climate.rainfall"));
 	}
 }
