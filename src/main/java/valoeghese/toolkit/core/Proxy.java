@@ -1,4 +1,4 @@
-package valoeghese.toolkit.common;
+package valoeghese.toolkit.core;
 
 import net.minecraft.entity.player.Player;
 

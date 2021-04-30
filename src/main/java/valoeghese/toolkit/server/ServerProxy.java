@@ -2,7 +2,7 @@ package valoeghese.toolkit.server;
 
 import net.minecraft.entity.player.Player;
 import net.minecraft.entity.player.ServerPlayer;
-import valoeghese.toolkit.common.Proxy;
+import valoeghese.toolkit.core.Proxy;
 
 public class ServerProxy implements Proxy {
 

@@ -1,4 +1,4 @@
-package valoeghese.toolkit.world;
+package valoeghese.toolkit.world.terrain;
 
 import io.github.minecraftcursedlegacy.api.registry.Id;
 import io.github.minecraftcursedlegacy.api.worldtype.WorldType;
@@ -8,7 +8,7 @@ import net.minecraft.level.gen.BiomeSource;
 import net.minecraft.level.gen.FixedBiomeSource;
 import net.minecraft.level.source.LevelSource;
 import net.minecraft.util.io.CompoundTag;
-import valoeghese.toolkit.common.Configurations;
+import valoeghese.toolkit.core.Configurations;
 
 public class SuperflatWorldType extends WorldType {
 	public SuperflatWorldType(Id id) {

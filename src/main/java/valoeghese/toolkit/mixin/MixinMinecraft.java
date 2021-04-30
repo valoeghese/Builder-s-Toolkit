@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import net.minecraft.client.Minecraft;
-import valoeghese.toolkit.common.Commands;
+import valoeghese.toolkit.core.Commands;
 
 @Mixin(Minecraft.class)
 public class MixinMinecraft {

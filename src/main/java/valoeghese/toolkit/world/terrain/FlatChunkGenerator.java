@@ -1,4 +1,4 @@
-package valoeghese.toolkit.world;
+package valoeghese.toolkit.world.terrain;
 
 
 import java.util.List;
@@ -9,7 +9,7 @@ import io.github.minecraftcursedlegacy.api.terrain.ChunkGenerator;
 import net.minecraft.level.Level;
 import net.minecraft.level.biome.Biome;
 import net.minecraft.level.source.LevelSource;
-import valoeghese.toolkit.common.Configurations;
+import valoeghese.toolkit.core.Configurations;
 
 public class FlatChunkGenerator extends ChunkGenerator {
 	public FlatChunkGenerator(Level level, long seed) {

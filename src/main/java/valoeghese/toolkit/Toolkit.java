@@ -12,14 +12,14 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.item.ItemInstance;
 import net.minecraft.item.ItemType;
-import net.minecraft.util.maths.TilePos;
+import net.minecraft.util.maths.Vec3i;
 import valoeghese.toolkit.client.ClientProxy;
-import valoeghese.toolkit.common.Commands;
-import valoeghese.toolkit.common.Configurations;
-import valoeghese.toolkit.common.Proxy;
+import valoeghese.toolkit.core.Commands;
+import valoeghese.toolkit.core.Configurations;
+import valoeghese.toolkit.core.Proxy;
 import valoeghese.toolkit.server.ServerProxy;
-import valoeghese.toolkit.world.SuperflatWorldType;
 import valoeghese.toolkit.world.item.LevelEditData;
+import valoeghese.toolkit.world.terrain.SuperflatWorldType;
 
 public class Toolkit implements ModInitializer {
 	@Override
@@ -38,7 +38,7 @@ public class Toolkit implements ModInitializer {
 
 		TileInteractionCallback.EVENT.register((player, level, item, tile, x, y, z, face) -> {
 			if (item.getType() == ItemType.hatchetWood) {
-				return getLevelEditData(item).interact(player, new TilePos(x, y, z));
+				return getLevelEditData(item).interact(player, new Vec3i(x, y, z));
 			} else {
 				return ActionResult.PASS;
 			}

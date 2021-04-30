@@ -7,29 +7,29 @@ import io.github.minecraftcursedlegacy.api.event.ActionResult;
 import io.github.minecraftcursedlegacy.api.registry.Id;
 import net.minecraft.entity.player.Player;
 import net.minecraft.util.io.CompoundTag;
-import net.minecraft.util.maths.TilePos;
+import net.minecraft.util.maths.Vec3i;
 import valoeghese.toolkit.Toolkit;
 
 public class LevelEditData implements AttachedData {
 	public LevelEditData(LevelEditData original) {
-		this.start = new TilePos(original.start.x, original.start.y, original.end.z);
-		this.end = new TilePos(original.end.x, original.end.y, original.end.z);
+		this.start = new Vec3i(original.start.x, original.start.y, original.end.z);
+		this.end = new Vec3i(original.end.x, original.end.y, original.end.z);
 	}
 
 	public LevelEditData() {
 	}
 
 	private boolean isWand = false;
-	private TilePos start = OUT_OF_WORLD;
-	private TilePos end = OUT_OF_WORLD;
+	private Vec3i start = OUT_OF_WORLD;
+	private Vec3i end = OUT_OF_WORLD;
 
 	@Nullable
-	public TilePos getStart() {
+	public Vec3i getStart() {
 		return start.equals(OUT_OF_WORLD) ? null : start;
 	}
 
 	@Nullable
-	public TilePos getEnd() {
+	public Vec3i getEnd() {
 		return end.equals(OUT_OF_WORLD) ? null : end;
 	}
 
@@ -37,18 +37,24 @@ public class LevelEditData implements AttachedData {
 		this.isWand = true;
 	}
 
-	public ActionResult interact(Player player, @Nullable TilePos pos) {
+	public boolean isWand() {
+		return this.isWand;
+	}
+
+	public ActionResult interact(Player player, @Nullable Vec3i pos) {
 		if (this.isWand) {
 			if (pos == null) {
 				start = OUT_OF_WORLD;
 				end = OUT_OF_WORLD;
+				Toolkit.sidedProxy.sendChatMessage(player, "Cleared wand positions " + pos);
 			} else if (!start.equals(OUT_OF_WORLD) && end.equals(OUT_OF_WORLD)) {
 				end = pos;
+				Toolkit.sidedProxy.sendChatMessage(player, "Set end pos of this wand to " + pos);
 			} else {
 				// Just in case
 				end = OUT_OF_WORLD;
 				start = pos;
-				
+				Toolkit.sidedProxy.sendChatMessage(player, "Set start pos of this wand to " + pos);
 			}
 
 			return ActionResult.SUCCESS;
@@ -88,11 +94,11 @@ public class LevelEditData implements AttachedData {
 		return new LevelEditData(this);
 	}
 
-	private static TilePos posFromTag(CompoundTag tag) {
-		return new TilePos(tag.getInt("x"), tag.getInt("y"), tag.getInt("z"));
+	private static Vec3i posFromTag(CompoundTag tag) {
+		return new Vec3i(tag.getInt("x"), tag.getInt("y"), tag.getInt("z"));
 	}
 
-	private static CompoundTag posToTag(TilePos pos) {
+	private static CompoundTag posToTag(Vec3i pos) {
 		CompoundTag result = new CompoundTag();
 		result.put("x", pos.x);
 		result.put("y", pos.y);
@@ -100,7 +106,7 @@ public class LevelEditData implements AttachedData {
 		return result;
 	}
 
-	// TilePos supports a reasonable amount
-	private static final TilePos OUT_OF_WORLD = new TilePos(0, 365, 0);
+	// Vec3i supports a reasonable amount
+	private static final Vec3i OUT_OF_WORLD = new Vec3i(0, 365, 0);
 	public static final Id ID = Toolkit.id("leveledit");
 }
