@@ -39,8 +39,7 @@ public class Toolkit implements ModInitializer {
 
 		superflat = new SuperflatWorldType(id("superflat"));
 		Translations.addTranslation("generator.toolkit.superflat", "Superflat");
-
-		System.out.println(superflatConfig.getDoubleValue("exampleContainer.someData"));
+		// TODO in ZoesteriaConfig 1.3.7 catch NPE and redirect to a new NullPointer or some other exception giving a detailed explanation of what key is null.
 	}
 
 	public static Id id(String name) {

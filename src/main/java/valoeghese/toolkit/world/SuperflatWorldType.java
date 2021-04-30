@@ -17,11 +17,11 @@ public class SuperflatWorldType extends WorldType {
 
 	@Override
 	public LevelSource createChunkGenerator(Level level, CompoundTag additionalData) {
-		return new FlatChunkGenerator(level);
+		return new FlatChunkGenerator(level, level.getSeed());
 	}
 
 	@Override
 	public BiomeSource createBiomeSource(Level level, CompoundTag additionalData) {
-		return new FixedBiomeSource(Biome.PLAINS, Toolkit.superflatConfig.getDoubleValue("temperature"), Toolkit.superflatConfig.getDoubleValue("rainfall"));
+		return new FixedBiomeSource(Biome.PLAINS, Toolkit.superflatConfig.getDoubleValue("climate.temperature"), Toolkit.superflatConfig.getDoubleValue("climate.rainfall"));
 	}
 }

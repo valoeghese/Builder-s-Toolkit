@@ -12,8 +12,8 @@ import net.minecraft.level.source.LevelSource;
 import valoeghese.toolkit.Toolkit;
 
 public class FlatChunkGenerator extends ChunkGenerator {
-	public FlatChunkGenerator(Level level) {
-		super(level, 0);
+	public FlatChunkGenerator(Level level, long seed) {
+		super(level, seed);
 
 		List<Object> layers = Toolkit.superflatConfig.getList("layers");
 		this.layers = new byte[layers.size()];
@@ -46,5 +46,17 @@ public class FlatChunkGenerator extends ChunkGenerator {
 	@Override
 	public void decorate(LevelSource levelSource, int chunkX, int chunkZ) {
 		// No-Op
+	}
+
+	// Always can spawn
+	@Override
+	public boolean isValidSpawnPos(int x, int z) {
+		this.level.getProperties().setSpawnY(this.layers.length);
+		return true;
+	}
+
+	@Override
+	public int getMinSpawnY() {
+		return this.layers.length - 1;
 	}
 }
