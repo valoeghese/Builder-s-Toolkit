@@ -18,7 +18,7 @@ public class MixinMinecraft {
 	
 	@Inject(at = @At("HEAD"), method = "method_2124", cancellable = true)
 	private void method_2124(String string, CallbackInfoReturnable<Boolean> info) {
-		if (string.length() > 2 && string.startsWith("//")) {
+		if (string.length() > 2 && string.startsWith("//") && !((Minecraft) (Object) this).hasLevel()) { // "hasLevel" is a serverside check
 			String[] args = string.substring(2).split(" ");
 			Commands.handle(((Minecraft) (Object) this).player, args);
 			info.setReturnValue(true);
