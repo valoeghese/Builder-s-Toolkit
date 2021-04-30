@@ -102,9 +102,9 @@ public class Commands {
 			}
 
 			// Fill
-			for (int x = x0; x < x1; ++x) {
-				for (int y = y0; y < y1; ++y) {
-					for (int z = z0; z < z1; ++z) {
+			for (int x = x0; x <= x1; ++x) {
+				for (int y = y0; y <= y1; ++y) {
+					for (int z = z0; z <= z1; ++z) {
 						player.level.setTile(x, y, z, tileToSet);
 					}
 				}
