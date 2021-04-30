@@ -32,6 +32,7 @@ public class Commands {
 			ItemInstance wandStack = new ItemInstance(ItemType.hatchetWood);
 			Toolkit.getLevelEditData(wandStack).setWand();
 			player.inventory.pickupItem(wandStack);
+			//System.out.println(Toolkit.getLevelEditData(player.inventory.getHeldItem()).isWand());
 			return true;
 		});
 
