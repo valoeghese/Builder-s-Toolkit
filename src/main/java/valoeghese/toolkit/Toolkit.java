@@ -7,12 +7,17 @@ import io.github.minecraftcursedlegacy.api.event.TileInteractionCallback;
 import io.github.minecraftcursedlegacy.api.registry.Id;
 import io.github.minecraftcursedlegacy.api.registry.Translations;
 import io.github.minecraftcursedlegacy.api.worldtype.WorldType;
+import net.fabricmc.api.EnvType;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.item.ItemInstance;
 import net.minecraft.item.ItemType;
 import net.minecraft.util.maths.TilePos;
+import valoeghese.toolkit.client.ClientProxy;
 import valoeghese.toolkit.common.Commands;
 import valoeghese.toolkit.common.Configurations;
+import valoeghese.toolkit.common.Proxy;
+import valoeghese.toolkit.server.ServerProxy;
 import valoeghese.toolkit.world.SuperflatWorldType;
 import valoeghese.toolkit.world.item.LevelEditData;
 
@@ -20,6 +25,8 @@ public class Toolkit implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		System.out.println("Initialising Builder's Toolkit");
+
+		sidedProxy = FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT ? new ClientProxy() : new ServerProxy();
 
 		Configurations.initConfigs();
 		superflat = new SuperflatWorldType(id("superflat"));
@@ -31,11 +38,12 @@ public class Toolkit implements ModInitializer {
 
 		TileInteractionCallback.EVENT.register((player, level, item, tile, x, y, z, face) -> {
 			if (item.getType() == ItemType.hatchetWood) {
-				return getLevelEditData(item).interact(new TilePos(x, y, z));
+				return getLevelEditData(item).interact(player, new TilePos(x, y, z));
 			} else {
 				return ActionResult.PASS;
 			}
 		});
+		
 	}
 
 	private static DataKey<LevelEditData> levelEditData;
@@ -49,4 +57,5 @@ public class Toolkit implements ModInitializer {
 	}
 
 	public static WorldType superflat;
+	public static Proxy sidedProxy;
 }

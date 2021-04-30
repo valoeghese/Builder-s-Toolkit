@@ -5,6 +5,7 @@ import javax.annotation.Nullable;
 import io.github.minecraftcursedlegacy.api.attacheddata.v1.AttachedData;
 import io.github.minecraftcursedlegacy.api.event.ActionResult;
 import io.github.minecraftcursedlegacy.api.registry.Id;
+import net.minecraft.entity.player.Player;
 import net.minecraft.util.io.CompoundTag;
 import net.minecraft.util.maths.TilePos;
 import valoeghese.toolkit.Toolkit;
@@ -36,17 +37,18 @@ public class LevelEditData implements AttachedData {
 		this.isWand = true;
 	}
 
-	public ActionResult interact(@Nullable TilePos pos) {
+	public ActionResult interact(Player player, @Nullable TilePos pos) {
 		if (this.isWand) {
 			if (pos == null) {
 				start = OUT_OF_WORLD;
 				end = OUT_OF_WORLD;
 			} else if (!start.equals(OUT_OF_WORLD) && end.equals(OUT_OF_WORLD)) {
-
+				end = pos;
 			} else {
 				// Just in case
 				end = OUT_OF_WORLD;
 				start = pos;
+				
 			}
 
 			return ActionResult.SUCCESS;
