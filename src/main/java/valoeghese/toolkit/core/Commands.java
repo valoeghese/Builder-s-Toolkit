@@ -35,7 +35,7 @@ public class Commands {
 			return true;
 		});
 
-		register("fill", (player, args) -> {
+		register("set", (player, args) -> {
 			LevelEditData led = null;
 			ItemInstance wandStack = player.inventory.getHeldItem();
 
